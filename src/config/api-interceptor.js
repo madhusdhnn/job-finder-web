@@ -2,6 +2,7 @@ import Store from '../store';
 import axios from './axios-instance';
 import {debounce} from 'lodash';
 import {hideSpinner, showSpinner} from '../actions/spinner-actions';
+import {snackbarError} from '../actions/snackbar-actions';
 
 export const initApiInterceptor = () => {
    let pendingRequestCount = 0;
@@ -45,7 +46,11 @@ export const initApiInterceptor = () => {
             pendingRequestCount--;
             hideLoader();
          }
-         // Handle API error codes
+
+         const response = err.response;
+         if (response && response.status === 500) {
+            Store.dispatch(snackbarError('Something went wrong! Please try again'));
+         }
          return Promise.reject(err);
       }
    );

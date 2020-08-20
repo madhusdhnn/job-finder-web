@@ -4,7 +4,8 @@ import {makeStyles} from '@material-ui/core/styles';
 
 const useStyles = makeStyles(theme => ({
    copyright: {
-      marginTop: theme.spacing(20)
+      position: 'fixed',
+      bottom: theme.spacing(0)
    }
 }), {
    name: 'Copyright'

@@ -8,7 +8,9 @@ import {Provider} from 'react-redux';
 import Routes from './components/Routes';
 import {initApiInterceptor} from './config/api-interceptor';
 import Store from './store';
+import dotenv from 'dotenv';
 
+dotenv.config();
 initApiInterceptor();
 
 ReactDOM.render(
