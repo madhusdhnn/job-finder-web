@@ -3,6 +3,9 @@ import '../../styles/main.scss';
 import theme from '../../theme';
 import {createGenerateClassName, StylesProvider, ThemeProvider} from '@material-ui/core/styles';
 import Spinner from './Spinner';
+import NavBar from './NavBar';
+import SnackBar from './SnackBar';
+import Copyright from './Copyright';
 
 const generateClassName = createGenerateClassName({disableGlobal: process.env.NODE_ENV === 'production', productionPrefix: 'jbf-ttm'});
 
@@ -14,9 +17,12 @@ class Layout extends Component {
          <StylesProvider generateClassName={generateClassName}>
             <ThemeProvider theme={theme}>
                <Spinner />
+               <SnackBar />
+               <NavBar />
                <div style={style}>
                   {this.props.children}
                </div>
+               <Copyright />
             </ThemeProvider>
          </StylesProvider>
       );
