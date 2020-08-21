@@ -31,13 +31,18 @@ class Dashboard extends Component {
       this.props.fetchAllJobs();
    }
 
+   clearFilters = () => {
+      const that = this;
+      that.reload();
+   }
+
    render() {
       const {classes, jobs} = this.props;
       return (
          <Container component="div" maxWidth="xl" className={classes.root}>
             <Grid container spacing={1}>
                <Grid item xs={12} md={2}>
-                  <Filters />
+                  <Filters clear={this.clearFilters} />
                </Grid>
                <Grid item xs={12} md={10} xl={8}>
                   <DashboardToolbar />
