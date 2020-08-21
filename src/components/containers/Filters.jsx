@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import {withStyles} from '@material-ui/core/styles';
 import {Grid} from '@material-ui/core';
 import CheckBox from '../layouts/CheckBox';
-import TooltippedSwitch from '../layouts/TooltippedSwitch';
 import Button from '@material-ui/core/Button';
 import PropTypes from 'prop-types';
 
@@ -25,11 +24,6 @@ const styles = theme => ({
 
 const defaultState = {
    filterApplied: false,
-   switchElem: {
-      name: 'show recent jobs',
-      label: 'Show recent jobs',
-      checked: false
-   },
    jobTypes: [
       {
          name: 'full time',
@@ -81,17 +75,6 @@ class Filters extends Component {
 
    clearFilters() {
       this.setState({...defaultState}, () => this.props.clear());
-   }
-
-   changeSwitch = () => {
-      const that = this;
-      that.setState(prevState => ({
-         filterApplied: true,
-         switchElem: {
-            ...prevState.switchElem,
-            checked: !prevState.switchElem.checked
-         }
-      }));
    }
 
    changeJobRole = (e) => {
@@ -161,13 +144,6 @@ class Filters extends Component {
                      title="Type"
                      changeState={this.changeJobType}
                      checkboxData={this.state.jobTypes}
-                  />
-               </Grid>
-               <Grid item xs={12}>
-                  <TooltippedSwitch
-                     tooltip="Shows only the jobs created within 5 days"
-                     changeState={this.changeSwitch}
-                     switchElem={this.state.switchElem}
                   />
                </Grid>
             </Grid>
