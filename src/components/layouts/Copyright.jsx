@@ -5,6 +5,7 @@ import {makeStyles} from '@material-ui/core/styles';
 const useStyles = makeStyles(theme => ({
    copyright: {
       position: 'fixed',
+      zIndex: -1,
       bottom: theme.spacing(0)
    }
 }), {

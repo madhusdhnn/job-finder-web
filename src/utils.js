@@ -4,4 +4,13 @@ const Dimensions = {
    }
 };
 
-export {Dimensions};
+const Arrays = {
+   uniqBy: (arr = [], iteratee = '') => {
+      if (arr && iteratee) {
+         return [...new Map(arr.map(i => [i[iteratee], i])).values()];
+      }
+      return [];
+   }
+};
+
+export {Dimensions, Arrays};

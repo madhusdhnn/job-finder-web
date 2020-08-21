@@ -10,6 +10,9 @@ const styles = theme => ({
       display: 'flex',
       flexDirection: 'column',
       flexGrow: 1,
+      [theme.breakpoints.up('md')]: {
+         position: 'fixed'
+      },
       padding: theme.spacing(2, 3)
    },
    clearFilterButton: {
@@ -33,6 +36,11 @@ const defaultState = {
       {
          name: 'part time',
          label: 'Part Time',
+         checked: false
+      },
+      {
+         name: 'contract',
+         label: 'Contract',
          checked: false
       }
    ],
@@ -120,7 +128,7 @@ class Filters extends Component {
       const {classes} = this.props;
       return (
          <div className={classes.root}>
-            <Grid container spacing={1}>
+            <Grid container spacing={1} direction="column">
                <Grid item xs={12} className={this.isFilterApplied() ? '' : classes.disappear}>
                   <Button
                      className={classes.clearFilterButton}
