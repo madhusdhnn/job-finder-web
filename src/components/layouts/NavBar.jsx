@@ -4,8 +4,6 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
-import {Dashboard} from '@material-ui/icons';
-import AppBarLinkItem from './AppBarLinkItem';
 
 const styles = {
    root: {
@@ -22,17 +20,11 @@ class NavBar extends Component {
       return (
          <div className={classes.root}>
             <CssBaseline />
-            <AppBar>
+            <AppBar elevation={2}>
                <Toolbar>
                   <Typography variant="h6" className={classes.title}>
                      Job Finder
                   </Typography>
-                  <AppBarLinkItem
-                     icon={<Dashboard />}
-                     title="Dashboard"
-                     path="/jobs/dashboard"
-                     label="dashboard"
-                  />
                </Toolbar>
             </AppBar>
             <Toolbar />

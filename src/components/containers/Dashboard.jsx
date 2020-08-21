@@ -4,17 +4,16 @@ import {bindActionCreators} from 'redux';
 import {fetchAllJobs} from '../../actions/job-api-actions';
 import PropTypes from 'prop-types';
 import PageRefresh from '../layouts/PageRefresh';
-import {Typography} from '@material-ui/core';
+import {Grid, Typography} from '@material-ui/core';
 import compose from 'recompose/compose';
 import withStyles from '@material-ui/core/styles/withStyles';
 import Container from '@material-ui/core/Container';
+import Filters from './Filters';
+import DashboardToolbar from './DashboardToolbar';
 
 const styles = theme => ({
    root: {
-      [theme.breakpoints.up('md')]: {
-         display: 'flex'
-      },
-      marginTop: theme.spacing(2)
+      marginTop: theme.spacing(3)
    }
 });
 
@@ -35,10 +34,18 @@ class Dashboard extends Component {
    render() {
       const {classes, jobs} = this.props;
       return (
-         <Container component="div" maxWidth="lg" className={classes.root}>
-            <Typography variant="h3" color="textPrimary" align="center">
-               {jobs.isLoading ? '' : `Showing ${jobs.totalResults} results`}
-            </Typography>
+         <Container component="div" maxWidth="xl" className={classes.root}>
+            <Grid container spacing={1}>
+               <Grid item xs={12} md={2}>
+                  <Filters />
+               </Grid>
+               <Grid item xs={12} md={10} xl={8}>
+                  <DashboardToolbar />
+                  <Typography variant="body1" color="textSecondary">
+                     {jobs.isLoading ? '' : `Showing ${jobs.totalResults} results`}
+                  </Typography>
+               </Grid>
+            </Grid>
             <PageRefresh disabled={jobs.isLoading} onClick={this.reload} />
          </Container>
       );
