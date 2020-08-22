@@ -18,9 +18,7 @@ const styles = theme => ({
       marginTop: theme.spacing(3)
    },
    jobRoot: {
-      display: 'flex',
-      width: '100%',
-      justifyContent: 'space-between'
+      width: '100%'
    }
 });
 
@@ -43,31 +41,6 @@ class Dashboard extends Component {
       that.reload();
    }
 
-   containerSupplier = (key, jobs, classes) => {
-      return (
-         <Box key={key} component="div" className={classes.jobRoot}>
-            {jobs.map(job => job)}
-         </Box>
-      );
-   }
-
-   jobMapper = (pages, classes) => {
-      let jobComponents = [];
-      let results = [];
-
-      for (let i = 1; i < pages.length; i++) {
-         const job = pages[i];
-         if (i % 3 === 0) {
-            results = [...results, this.containerSupplier(i, jobComponents, classes)];
-            jobComponents = [];
-         } else {
-            jobComponents.push((<Job key={job.id} job={job} />));
-         }
-      }
-
-      return results;
-   }
-
    render() {
       const {classes, jobs, pages, totalUniqueJobs} = this.props;
       return (
@@ -81,7 +54,9 @@ class Dashboard extends Component {
                   <Typography paragraph variant="body1" color="textSecondary">
                      {jobs.isLoading ? '' : `Showing ${totalUniqueJobs} results`}
                   </Typography>
-                  {pages.length > 0 && this.jobMapper(pages, classes)}
+                  <Box component="div" className={classes.jobRoot}>
+                     {pages.length > 0 && pages.flatMap(job => (<Job key={job.id} job={job} />))}
+                  </Box>
                </Grid>
             </Grid>
             <PageRefresh disabled={jobs.isLoading} onClick={this.reload} />

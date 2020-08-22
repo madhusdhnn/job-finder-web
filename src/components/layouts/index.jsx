@@ -5,9 +5,11 @@ import {createGenerateClassName, StylesProvider, ThemeProvider} from '@material-
 import Spinner from './Spinner';
 import NavBar from './NavBar';
 import SnackBar from './SnackBar';
-import Copyright from './Copyright';
 
-const generateClassName = createGenerateClassName({disableGlobal: process.env.NODE_ENV === 'production', productionPrefix: 'jbf-ttm'});
+const generateClassName = createGenerateClassName({
+   disableGlobal: process.env.NODE_ENV === 'production',
+   productionPrefix: 'jbf-ttm'
+});
 
 const style = {width: '100%', marginBottom: 10};
 
@@ -22,7 +24,6 @@ class Layout extends Component {
                <div style={style}>
                   {this.props.children}
                </div>
-               <Copyright />
             </ThemeProvider>
          </StylesProvider>
       );

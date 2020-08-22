@@ -11,11 +11,11 @@ import Button from '@material-ui/core/Button';
 const styles = theme => ({
    paper: {
       padding: theme.spacing(3),
-      margin: theme.spacing(2, 1),
-      width: '48%'
+      margin: theme.spacing(1)
    },
    avatarSmall: {
       border: '1px solid #d3d3d3',
+      margin: theme.spacing(0, 1),
       width: theme.spacing(5),
       height: theme.spacing(5)
    },
@@ -37,20 +37,15 @@ const styles = theme => ({
    flexBox: {
       display: 'flex',
       alignItems: 'flex-end',
-      flexBasis: '100%',
-      flexGrow: 1,
-      margin: theme.spacing(1, 4, 1, 0),
-      '& > .MuiTypography-root': {
-         marginLeft: theme.spacing(1)
+      margin: theme.spacing(1, 1, 1, 0),
+      '& > svg': {
+         marginRight: theme.spacing(1)
       }
    },
    jobLocation: {
+      textTransform: 'capitalize',
       wordBreak: 'break-word'
-   },
-   jobApplyButton: {
-      marginTop: theme.spacing(5)
    }
-
 });
 
 class Job extends Component {
@@ -92,7 +87,7 @@ class Job extends Component {
                      variant="subtitle2"
                      className={classes.jobLocation}
                   >
-                     {job.location}
+                     {job.location.toLowerCase()}
                   </Typography>
                </Box>
                <Box component="div" className={classes.flexBox}>
@@ -107,14 +102,13 @@ class Job extends Component {
                </Box>
             </Box>
             <Button
+               disableElevation
                color="secondary"
                variant="contained"
                href={job.url}
                target="_blank"
-               className={classes.jobApplyButton}
                rel="noopener noreferrer"
-            >
-               apply now
+            >more info
             </Button>
          </Paper>
       );
